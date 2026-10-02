@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dinner Spinner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#211b16;--cream:#f7f0e6;--paper:#fffaf2;--coral:#ef6b55;--yellow:#f6c95f;--green:#89b88a;--blue:#8eb8c8;--purple:#a99acb}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:"DM Sans",sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#211b16 .6px,transparent .6px);background-size:7px 7px}
+.wrap{max-width:1180px;margin:auto;min-height:100vh;padding:28px 30px 34px;display:flex;flex-direction:column}
+header{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.brand{font-family:"Space Grotesk";font-weight:700;font-size:18px;letter-spacing:-.04em;display:flex;gap:9px;align-items:center}.dot{width:11px;height:11px;background:var(--coral);border-radius:50%}
+.pill{border:1.5px solid #211b16;border-radius:99px;padding:8px 13px;font-size:12px;font-weight:600;background:rgba(255,250,242,.65)}
+main{flex:1;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:60px;padding:38px 0 20px}
+.copy{max-width:450px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:700;margin-bottom:16px;opacity:.62}
+h1{font-family:"Space Grotesk";font-size:clamp(48px,6vw,82px);line-height:.92;letter-spacing:-.065em;margin:0 0 24px}
+h1 span{display:block;color:var(--coral)}.lead{font-size:17px;line-height:1.55;max-width:370px;opacity:.72;margin:0 0 28px}
+.options{display:flex;flex-wrap:wrap;gap:8px}.tag{font-size:12px;font-weight:600;border:1.5px solid #211b16;border-radius:99px;padding:7px 11px;background:var(--paper)}
+.stage{display:flex;flex-direction:column;align-items:center;position:relative}
+.wheel-wrap{width:min(490px,80vw);aspect-ratio:1;position:relative}
+.wheel{width:100%;height:100%;border-radius:50%;border:7px solid var(--ink);background:conic-gradient(var(--coral) 0deg 72deg,var(--yellow) 72deg 144deg,var(--green) 144deg 216deg,var(--blue) 216deg 288deg,var(--purple) 288deg 360deg);transition:transform 4.2s cubic-bezier(.12,.78,.16,1);box-shadow:12px 14px 0 #211b16}
+.label{position:absolute;left:50%;top:50%;transform-origin:0 0;width:42%;height:0;text-align:center;font-family:"Space Grotesk";font-weight:700;font-size:18px;letter-spacing:-.04em}
+.l1{transform:rotate(36deg) translateX(20px)}.l2{transform:rotate(108deg) translateX(20px)}.l3{transform:rotate(180deg) translateX(20px)}.l4{transform:rotate(252deg) translateX(20px)}.l5{transform:rotate(324deg) translateX(20px)}
+.pointer{position:absolute;z-index:4;top:-4px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:30px solid var(--ink);filter:drop-shadow(0 2px 0 var(--paper))}
+.hub{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%);width:94px;height:94px;border-radius:50%;background:var(--paper);border:6px solid var(--ink);display:grid;place-items:center;font-family:"Space Grotesk";font-size:13px;font-weight:700;text-align:center;line-height:1.05}
+.spin{margin-top:38px;background:var(--ink);color:var(--paper);border:0;border-radius:99px;padding:17px 42px;font-family:"Space Grotesk";font-size:17px;font-weight:700;cursor:pointer;box-shadow:5px 6px 0 var(--coral);transition:transform .15s,box-shadow .15s}.spin:hover{transform:translate(-2px,-2px);box-shadow:7px 8px 0 var(--coral)}.spin:active{transform:translate(2px,2px);box-shadow:3px 4px 0 var(--coral)}.spin:disabled{opacity:.7;cursor:wait}
+.result{min-height:27px;margin-top:20px;font-family:"Space Grotesk";font-size:18px;font-weight:700;text-align:center}.result small{font-family:"DM Sans";font-size:12px;font-weight:500;opacity:.6;display:block;margin-bottom:4px}
+footer{font-size:11px;opacity:.5;text-align:center;padding-top:12px}
+@media(max-width:800px){.wrap{padding:22px 20px}main{grid-template-columns:1fr;gap:25px;padding-top:45px}.copy{text-align:center;margin:auto}.lead{margin-left:auto;margin-right:auto}.options{justify-content:center}.stage{padding-bottom:10px}.wheel-wrap{width:min(390px,82vw)}h1{font-size:58px}.pill{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="brand"><i class="dot"></i> DINNER SPINNER</div><div class="pill">NO MORE “WHAT SHOULD WE EAT?”</div></header>
+<main>
+<section class="copy">
+<div class="eyebrow">The dinner decision machine</div>
+<h1>Spin.<span>Eat.</span>Repeat.</h1>
+<p class="lead">Five cravings. One spin. Zero group-chat debates. Let the wheel decide tonight’s dinner.</p>
+<div class="options"><span class="tag">🍕 Pizza</span><span class="tag">🌮 Tacos</span><span class="tag">🍣 Sushi</span><span class="tag">🍜 Ramen</span><span class="tag">🍔 Burgers</span></div>
+</section>
+<section class="stage">
+<div class="wheel-wrap"><div class="pointer"></div><div class="wheel" id="wheel">
+<div class="label l1">Pizza</div><div class="label l2">Tacos</div><div class="label l3">Sushi</div><div class="label l4">Ramen</div><div class="label l5">Burgers</div>
+</div><div class="hub">DINNER<br>TIME</div></div>
+<button class="spin" id="spin">SPIN THE WHEEL</button><div class="result" id="result"></div>
+</section>
+</main>
+<footer>Made for hungry indecisive people.</footer>
+</div>
+<script>
+const foods=["Pizza","Tacos","Sushi","Ramen","Burgers"],wheel=document.getElementById("wheel"),btn=document.getElementById("spin"),result=document.getElementById("result");let rotation=0,busy=false;
+btn.addEventListener("click",()=>{if(busy)return;busy=true;btn.disabled=true;result.innerHTML="";
+const index=Math.floor(Math.random()*foods.length),target=index*72+36;const current=((rotation%360)+360)%360;const delta=(360-current+360-target)%360;rotation+=360*5+delta;wheel.style.transform="rotate("+rotation+"deg)";
+setTimeout(()=>{result.innerHTML="<small>Tonight you’re having</small>"+foods[index]+"!";btn.disabled=false;busy=false},4300)});
+</script>
+</body></html>
